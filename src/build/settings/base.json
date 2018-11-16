@@ -1,0 +1,6 @@
+{
+    "app_name": "Pomodoro",
+    "main_module": "src/main/python/main.py",
+    "author": "Suhas G",
+    "version": "0.0.1"
+}
