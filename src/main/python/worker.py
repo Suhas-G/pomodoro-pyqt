@@ -6,15 +6,20 @@ class Worker(QObject):
     finished = pyqtSignal()
     timeProgress = pyqtSignal(float)
 
-    def __init__(self, time_limit: int):
+    def __init__(self, time_limit: int) -> None:
         super().__init__()
         self.time_limit = time_limit
+        self.is_running = True
 
+    def stop(self) -> None:
+        self.is_running = False
 
     @pyqtSlot()
-    def timeCounter(self):
-        for i in range(0, self.time_limit*60):
-            time.sleep(1)
-            self.timeProgress.emit(i / 60)
+    def timeCounter(self) -> None:
+        start_time = time.time()
+        end_time = self.time_limit*60
+        while (time.time() - start_time) < end_time and self.is_running:
+            time.sleep(0.5)
+            self.timeProgress.emit((time.time() - start_time) / 60)
 
         self.finished.emit()

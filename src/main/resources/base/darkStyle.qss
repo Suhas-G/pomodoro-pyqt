@@ -1,0 +1,245 @@
+ QWidget {
+     color: #eff0f1;
+     background-color: #31363b;
+     selection-background-color: #3daee9;
+     selection-color: #eff0f1;
+     background-clip: border;
+     border-image: none;
+     border: 0px transparent black;
+     outline: 0;
+ }
+
+ QWidget:item:hover {
+     background-color: #3daee9;
+     color: #eff0f1;
+ }
+
+ QWidget:item:selected {
+     background-color: #3daee9;
+ }
+
+
+ QWidget:disabled {
+     color: #454545;
+     background-color: #31363b;
+ }
+
+ QWidget:focus,
+ QMenuBar:focus {
+     border: 0.1ex solid #3daee9;
+ }
+
+ QLineEdit {
+     background-color: #232629;
+     padding: 0.5ex;
+     border-style: solid;
+     border: 0.1ex solid #76797c;
+     border-radius: 0.2ex;
+     color: #eff0f1;
+ }
+
+ QTextEdit {
+     background-color: #232629;
+     color: #eff0f1;
+     border: 0.1ex solid #76797c;
+ }
+
+ QPlainTextEdit {
+     background-color: #232629;
+     ;
+     color: #eff0f1;
+     border-radius: 0.2ex;
+     border: 0.1ex solid #76797c;
+ }
+
+ QPushButton {
+     color: #eff0f1;
+     background-color: qlineargradient(x1: 0.5, y1: 0.5 x2: 0.5, y2: 1, stop: 0 #3b4045, stop: 0.5 #31363b);
+     border-width: 0.1ex;
+     border-color: #76797c;
+     border-style: solid;
+     padding: 1ex;
+     padding-left: 5ex;
+     padding-right: 5ex;
+     border-radius: 0.2ex;
+     outline: none;
+ }
+
+ QPushButton:disabled {
+     background-color: #31363b;
+     border-width: 0.1ex;
+     border-color: #454545;
+     border-style: solid;
+     padding-top: 0.5ex;
+     padding-bottom: 0.5ex;
+     padding-left: 1ex;
+     padding-right: 1ex;
+     border-radius: 0.2ex;
+     color: #454545;
+ }
+
+ QPushButton:focus {
+     color: white;
+ }
+
+ QPushButton:pressed {
+     background-color: #31363b;
+     padding-top: -1.5ex;
+     padding-bottom: -1.7ex;
+ }
+
+ QPushButton:checked {
+     background-color: #76797c;
+     border-color: #6A6969;
+ }
+
+ QPushButton:hover {
+     background-color: qlineargradient(x1: 0.5, y1: 0.5 x2: 0.5, y2: 1, stop: 0 #454a4f, stop: 0.5 #3b4045);
+     border: 0.1ex solid #3daee9;
+     color: #eff0f1;
+ }
+
+ QPushButton:checked:hover {
+     background-color: qlineargradient(x1: 0.5, y1: 0.5 x2: 0.5, y2: 1, stop: 0 #808386, stop: 0.5 #76797c);
+     border: 0.1ex solid #3daee9;
+     color: #eff0f1;
+ }
+
+ QAbstractSpinBox:hover,
+ QLineEdit:hover,
+ QTextEdit:hover,
+ QPlainTextEdit:hover {
+     border: 0.1ex solid #3daee9;
+     color: #eff0f1;
+ }
+
+
+ QPushButton:hover:pressed,
+ QAbstractSpinBox:hover:pressed,
+ QLineEdit:hover:pressed,
+ QTextEdit:hover:pressed,
+ QPlainTextEdit:hover:pressed {
+     background-color: #31363b;
+ }
+
+ QAbstractSpinBox {
+     padding: 0.5ex;
+     border: 0.1ex solid #76797c;
+     background-color: #232629;
+     color: #eff0f1;
+     border-radius: 0.2ex;
+     min-width: 7.5ex;
+ }
+
+ QAbstractSpinBox:up-button {
+     background-color: transparent;
+     subcontrol-origin: border;
+     subcontrol-position: center right;
+ }
+
+ QAbstractSpinBox:down-button {
+     background-color: transparent;
+     subcontrol-origin: border;
+     subcontrol-position: center left;
+ }
+
+ QAbstractSpinBox::up-arrow,
+ QAbstractSpinBox::up-arrow:disabled,
+ QAbstractSpinBox::up-arrow:off {
+     border-image: url(dark/up_arrow_disabled.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QAbstractSpinBox::up-arrow:hover {
+     border-image: url(dark/up_arrow.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QAbstractSpinBox::down-arrow,
+ QAbstractSpinBox::down-arrow:disabled,
+ QAbstractSpinBox::down-arrow:off {
+     border-image: url(dark/down_arrow_disabled.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QAbstractSpinBox::down-arrow:hover {
+     border-image: url(dark/down_arrow.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QLabel {
+     border: 0ex solid black;
+ }
+
+ QSpinBox,
+ QDoubleSpinBox {
+     padding-right: 1.5ex;
+ }
+
+ QSpinBox::up-button,
+ QDoubleSpinBox::up-button {
+     subcontrol-origin: content;
+     subcontrol-position: right top;
+
+     width: 1.6ex;
+     border-width: 0.1ex;
+ }
+
+ QSpinBox::up-arrow,
+ QDoubleSpinBox::up-arrow {
+     border-image: url(dark/up_arrow.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QSpinBox::up-arrow:hover,
+ QSpinBox::up-arrow:pressed,
+ QDoubleSpinBox::up-arrow:hover,
+ QDoubleSpinBox::up-arrow:pressed {
+     border-image: url(dark/up_arrow-hover.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QSpinBox::up-arrow:disabled,
+ QSpinBox::up-arrow:off,
+ QDoubleSpinBox::up-arrow:disabled,
+ QDoubleSpinBox::up-arrow:off {
+     border-image: url(dark/up_arrow_disabled.svg);
+ }
+
+ QSpinBox::down-button,
+ QDoubleSpinBox::down-button {
+     subcontrol-origin: content;
+     subcontrol-position: right bottom;
+
+     width: 1.6ex;
+     border-width: 0.1ex;
+ }
+
+ QSpinBox::down-arrow,
+ QDoubleSpinBox::down-arrow {
+     border-image: url(dark/down_arrow.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QSpinBox::down-arrow:hover,
+ QSpinBox::down-arrow:pressed,
+ QDoubleSpinBox::down-arrow:hover,
+ QDoubleSpinBox::down-arrow:pressed {
+     border-image: url(dark/down_arrow-hover.svg);
+     width: 2ex;
+     height: 1.5ex;
+ }
+
+ QSpinBox::down-arrow:disabled,
+ QSpinBox::down-arrow:off,
+ QDoubleSpinBox::down-arrow:disabled,
+ QDoubleSpinBox::down-arrow:off {
+     border-image: url(dark/down_arrow_disabled.svg);
+ }

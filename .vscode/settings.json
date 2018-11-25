@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "E:\\IDE\\Miniconda\\envs\\pyqt_apps\\python.exe"
+    "python.pythonPath": "E:\\IDE\\Miniconda\\envs\\pyqt_apps\\python.exe",
+    "python.formatting.provider": "autopep8"
 }
