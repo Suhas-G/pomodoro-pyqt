@@ -16,8 +16,17 @@ from progressbar import QRoundProgressBar
 
 
 class PomodoroWindow(QMainWindow):
+    """Main widow of the Pomodoro application
+    """
 
     def __init__(self, app) -> None:
+        """Initialise the main window.
+
+        :param app: QApplication: The Qt application which starts the window.
+        :attr: time_limit: float: The time limit till which the Pomodoro app runs 1 time.
+        :attr: timer_started: boolean: True if timer has started, False if timer is not running.
+        :attr: stopped_forcefully: boolean: True if Pomodoro timer has been stopped in the middle of a run, else False
+        """
         super().__init__()
         self.app = app
         self.time_limit = 20
@@ -26,6 +35,10 @@ class PomodoroWindow(QMainWindow):
         self.init_UI()
 
     def init_UI(self) -> None:
+        """Initialise the UI.
+        Sets the Window size, title.
+        Sets the layout of the window and spacing between widgets.
+        """
         self.setWindowTitle(APPLICATION_NAME)
         self.resize(*WINDOW_SIZE)
         self.setFixedSize(self.size())
@@ -43,6 +56,11 @@ class PomodoroWindow(QMainWindow):
         self.setCentralWidget(centralWidget)
 
     def create_time_limit_input(self) -> None:
+        """Draws the Timer Limit Input field.
+        Set the minimum of Timer Limit Input to 1 minutes.
+        Set the maximum of Timer Limit Input to 120 minutes.
+        Attaches the callback to be called when the Input field value changes.
+        """
         self.time_limit_label = QLabel(TIME_INPUT_LABEL)
         self.time_limit_label.setFont(QFont(FONT_NAME, FONT_SIZE, QFont.Bold))
         self.time_limit_input = QSpinBox()
@@ -56,12 +74,16 @@ class PomodoroWindow(QMainWindow):
         self.grid.addWidget(self.time_limit_input, 1, 2, 1, 2)
 
     def create_progress_bar(self) -> None:
+        """Draws the round progressbar.
+        """
         hbox = QHBoxLayout()
         self.progress_bar = QRoundProgressBar(end_value=self.time_limit)
         hbox.addWidget(self.progress_bar, 0, Qt.AlignCenter)
         self.grid.addLayout(hbox, 2, 0, 5, 5)
 
     def create_start_button(self) -> None:
+        """Draws the Start button. Attaches callback to handle button click.
+        """
         self.start_button = QPushButton(START_BUTTON_LABEL)
         self.start_button.setFont(QFont(FONT_NAME, FONT_SIZE, QFont.Bold))
         self.start_button.clicked.connect(self.timer_btn_clicked)
@@ -71,10 +93,17 @@ class PomodoroWindow(QMainWindow):
         self.grid.addLayout(hbox, 7, 0, 1, 5)
 
     def time_limit_changed(self) -> None:
+        """Callback to handle change in value of Timer Limit Input.
+        Once changed, sets the range of the progressbar. (0 - time limit)
+        """
         self.time_limit = self.time_limit_input.value()
         self.progress_bar.set_range(0, self.time_limit)
 
     def configure_worker(self) -> None:
+        """Initialise a worker to run a timer in a separate thread.
+        Attaches the timeProgress signal of worker to callback "time_progress".
+        Attaches the finished signal of worker to callback "timer_ended"
+        """
         self.timer_worker = worker.Worker(self.time_limit)
         self.timer_thread = QThread()
 
@@ -84,18 +113,31 @@ class PomodoroWindow(QMainWindow):
         self.timer_thread.started.connect(self.timer_worker.timeCounter)
 
     def time_progress(self, time_progressed: float) -> None:
+        """Callback to handle when time progresses by approximately 0.5 seconds.
+
+        :param time_progressed: float: 
+        """
         self.progress_bar.value = time_progressed
 
     def init_timer(self) -> None:
+        """Initialise the worker
+        """
         self.timer_started = True
         self.configure_worker()
 
     def stop_timer(self) -> None:
+        """Stop the worker, and make it to emit "finished" signal.
+        """
         self.timer_started = False
         self.timer_worker.stop()
         self.timer_thread.quit()
 
     def timer_btn_clicked(self) -> None:
+        """Callback to handle the Start / Stop button click.
+        If Start is pressed, change the text to Stop and start the timer.
+        If Stop is pressed, change the text to Start button and stop the timer
+        In between processing disable button click to ensure it cant be pressed too frequently.
+        """
         if not self.timer_started:
             self.init_timer()
             self.start_button.setDisabled(True)
@@ -103,17 +145,24 @@ class PomodoroWindow(QMainWindow):
             self.timer_thread.start()
             self.start_button.setEnabled(True)
         else:
+            self.start_button.setDisabled(True)
             self.stopped_forcefully = True
             self.stop_timer()
 
     def timer_ended(self) -> None:
+        """Callback to handle when timer ends either at the end of time limit or forcefully stopped.
+        """
         self.start_button.setText(START_BUTTON_LABEL)
+        self.start_button.setEnabled(True)
+        # If the timer is stopped forcefully, no need to show notification
         self.stop_timer()
         if not self.stopped_forcefully:
             self.show_notification()
         self.stopped_forcefully = False
 
     def show_notification(self) -> None:
+        """Show a notification that the Pomodoro has completed one run, and to take a break.
+        """
         system_tray_icon = QSystemTrayIcon(
             QIcon('src/main/icons/Icon.ico'), self)
         system_tray_icon.show()
