@@ -13,11 +13,10 @@ A simple Pomodoro timer built using Pyqt5.
 ### Installation
 
 1. From Source:
-   
-    a. Install Python 3.5
-    b. See installation instructions on [fbs tutorial](https://github.com/mherrmann/fbs-tutorial)
-    c. After installing required versions: PyQt5==5.9.2, PyInstaller==3.4.
-    d. Run the script from repo parent directory: 
+    1.  Install Python 3.5
+    2.  See installation instructions on [fbs tutorial](https://github.com/mherrmann/fbs-tutorial)
+    3.  After installing required versions: PyQt5==5.9.2, PyInstaller==3.4.
+    4.  Run the script from repo parent directory: 
     ```python -m fbs run```
 
 2. For Windows: Use the Installer or the portable executable found in [dist/windows](https://github.com/Suhas-G/pomodoro-pyqt/tree/master/dist/windows)
