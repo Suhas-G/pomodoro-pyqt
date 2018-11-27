@@ -21,7 +21,7 @@ A simple Pomodoro timer built using Pyqt5.
 
 2. For Windows: Use the Installer or the portable executable found in [dist/windows](https://github.com/Suhas-G/pomodoro-pyqt/tree/master/dist/windows)
 
-3. For other distros: TBD
+3. For other operating systems: TBD
 
 ### Demo
 ![Pomodoro Application Demo](docs/images/Pomodoro_App.gif)
